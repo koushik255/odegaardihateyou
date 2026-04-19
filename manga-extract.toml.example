@@ -1,0 +1,37 @@
+# Directory containing the CBZ files.
+# Relative paths are resolved relative to this TOML file.
+input_dir = '.'
+
+# Regex applied to the CBZ filename without the .cbz extension.
+# Named captures can be reused in folder_template as {name}.
+# The important named capture is "volume".
+pattern = '^(?P<series>.+?)\s+v(?P<volume>\d+).*$'
+
+# Simple naming mode:
+# Replaces "xx" with the zero-padded volume number.
+# Example result: Tokyo_Ghoul_RE_01, Tokyo_Ghoul_RE_16
+folder_name_def = 'Tokyo_Ghoul_RE_xx'
+
+# Advanced naming mode (used when folder_name_def is not set):
+# Available values include {series}, {volume}, {volume_padded}, {stem}, {filename}
+# folder_template = '{series} v{volume_padded}'
+# folder_template = 'Volume {volume_padded}'
+# folder_template = '{series}_Volume_{volume_padded}'
+# folder_template = '{series}/Volume {volume_padded}'
+folder_template = '{series} v{volume_padded}'
+
+# Replaces characters that are invalid in folder names on common filesystems.
+sanitize_folder_name = true
+
+# How chapter folders inside the CBZ should be handled.
+# Options:
+#   preserve
+#     Keep the archive's internal folder structure.
+#   flatten_chapter_folders
+#     Remove chapter folders and extract files directly into the volume folder.
+#     Original file names are kept when possible; duplicates become things like:
+#     001.png, 001_001.png, 001_002.png
+#   flatten_chapters
+#     Remove chapter folders and rename all pages sequentially across the whole volume:
+#     000.png, 001.png, 002.png, ...
+flatten_mode = 'flatten_chapters'

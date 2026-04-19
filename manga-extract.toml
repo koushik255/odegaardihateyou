@@ -1,0 +1,5 @@
+input_dir = '/home/koushikk/MANGA/Tokyo/TG/TK_RE'
+pattern = '^(?P<volume_only>.*?)(?:\s+v|\s+)(?P<volume>\d+).*$'
+folder_name_def = 'Tokyo_Ghoul_RE_xx'
+sanitize_folder_name = true
+flatten_mode = 'flatten_chapters'
